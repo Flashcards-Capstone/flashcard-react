@@ -23,5 +23,23 @@ const UserApi = {
             } )
             .then( window.location.replace('http://localhost:3000/user/' + data['id']) )
             .catch( (error) => { console.log(error) } ) 
+    },
+
+    getUserById: (userId) => {
+        fetch( URI + '/' + userId )
+            .then( (result) => {
+
+                console.log("RESULT")
+                console.log(result)
+
+                return result.json()
+            } )
+            .then( (data) => {
+
+                console.log("DATA:")
+                console.log(data)
+
+            } )
+            .catch( (error) => { console.log(error) } );
     }
 }
