@@ -2,7 +2,15 @@ import React from 'react';
 
 const Home = () => {
     return(
-        <p>Test</p>
+
+        <div className='home'>
+            <h1 className='home-text'>
+                Welcome to FlashCard!
+                <br />
+                Please Sign In to Continue
+            </h1>
+        </div>
+
     )
 }
 
