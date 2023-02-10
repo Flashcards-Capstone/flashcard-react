@@ -1,25 +1,19 @@
+import { useState } from "react";
 import React from "react";
 
 const LogIn = () => {
+    const[ username, setUsername ] = useState("")
+    const[ password, setPassword ] = useState("")
+
+    const handleSubmit = (event) => {
+        
+    }
+    
     return (
-        // <div className="home">
-        //     <form className="home-text">
-        //         <div class="mb-3">
-        //             <label for="exampleInputEmail1" class="form-label">Email address</label>
-        //             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-        //         </div>
-                
-        //         <div class="mb-3">
-        //             <label for="exampleInputPassword1" class="form-label">Password</label>
-        //             <input type="password" class="form-control" id="exampleInputPassword1"/>
-        //         </div>
-                
-        //         <button type="submit" class="btn btn-primary">Submit</button>
-        //     </form>
-        // </div>
+
         <div className="home">
             <div className="login-div">
-                <form className="login-box">
+                <form className="login-box" onSubmit={ handleSubmit }>
                     <div className="login-box-content">
                         <h3 className="login-box-title">Sign In</h3>
                         <div className="form-group mt-3">
@@ -28,6 +22,8 @@ const LogIn = () => {
                                 type="username"
                                 className="form-control mt-1"
                                 placeholder="Enter username"
+                                value={username}
+                                onChange={ (event) => { setUsername(event.target.value) } }
                             />
                         </div>
                         <div className="form-group mt-3">
@@ -36,6 +32,8 @@ const LogIn = () => {
                                 type="password"
                                 className="form-control mt-1"
                                 placeholder="Enter password"
+                                value={password}
+                                onChange={ (event) => { setPassword(event.target.value) } }
                             />
                         </div>
                         <div className="d-grid gap-2 mt-3">
