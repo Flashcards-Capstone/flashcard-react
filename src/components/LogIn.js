@@ -6,7 +6,12 @@ const LogIn = () => {
     const[ password, setPassword ] = useState("")
 
     const handleSubmit = (event) => {
-        
+        const userCredentials = {
+            'username': username,
+            'password': password
+        }
+
+        ProductApi.loginUser(userCredentials)
     }
     
     return (
