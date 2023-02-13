@@ -1,4 +1,4 @@
-const URI = "http://localhost:3000/api/v1/card"
+const URI = "http://localhost:8080/api/card"
 
 const CardApi = {
     createCard: (cardToCreate) => {

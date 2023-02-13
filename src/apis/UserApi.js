@@ -1,9 +1,9 @@
-const URI = "http://localhost:3000/api/v1/user"
+const URI = "http://localhost:8080/api/user"
 
 const UserApi = {
 
     authenticateUser: (userCredentials) => {
-        fetch( URI, {
+        fetch( "http://localhost:8080/authenticate", {
             method: "POST", 
             headers: { "Content-Type": "application/json" }, 
             body: JSON.stringify(userCredentials)
@@ -13,15 +13,19 @@ const UserApi = {
                 console.log("RESULT")
                 console.log(result)
 
-                return result.json() 
-            } )
-            .then( (data) => {
+                if (result !== null) {
+                    window.location.replace('http://localhost:8080/api/user/' + result['id'])
+                }
 
-                console.log("DATA:")
-                console.log(data)
-
+                return result.json()
             } )
-            .then( window.location.replace('http://localhost:3000/user/' + data['id']) )
+            // .then( (data) => {
+
+            //     console.log("DATA:")
+            //     console.log(data)
+
+            // } )
+            // .then( window.location.replace('http://localhost:8080/api/user/' + data['id']) )
             .catch( (error) => { console.log(error) } ) 
     },
 
