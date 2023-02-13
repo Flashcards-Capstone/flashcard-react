@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from "react";
+import UserApi from "../apis/UserApi";
 
 const LogIn = () => {
     const[ username, setUsername ] = useState("")
@@ -11,7 +12,7 @@ const LogIn = () => {
             'password': password
         }
 
-        ProductApi.loginUser(userCredentials)
+        UserApi.authenticateUser(userCredentials)
     }
     
     return (
