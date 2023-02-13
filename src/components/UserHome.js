@@ -1,46 +1,41 @@
 import React, { useEffect, useState } from "react";
 import StackApi from '../apis/StackApi';
+import { Link } from "react-router-dom";
+import CardApi from "../apis/CardApi";
 
-const UserHome = () => {
+const UserHome = (props) => {
     const [stackList, setStackList] = useState([])
-    const [cardList, setCardList] = useState([])
+    const [refresh, setRefresh] = useState(false)
 
     useEffect( () => {
-        console.log("Hello, this component was mounted!")
         StackApi.getAllStacks(setStackList)
 
-    }, [] )
+    }, [refresh] )
 
     return (
         <div>
             <h1>List of your Stacks:</h1>
-            <table className='table'>
-                <thead>
-                    <tr>
-                        <th>Stacks:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        stackList.map( s =>  
-                                    <tr key={s.id}>
-                                        <td>{s.name}</td>
-                                        <td>{s.category}</td>
-                                        <td>
-                                            {
-                                               stackList.cardList.map( c =>
-                                                <tr key={c.id}>
-                                                    <td>{c.name}</td>
-                                                    <td>{c.category}</td>
-                                                </tr>
-                                               )
-                                            }
-                                        </td>
-                                    </tr>
-                            )
-                    }
-                </tbody>
-            </table>
+            {stackList.map( stack => 
+            <h4 key={stack.id}>
+              {stack.subject}: {stack.title}
+              <br/>
+              <br/>
+              {stack.cardList.map(card =>
+                <p key={card.id}>
+                  {card.question}|{card.answer}
+                  <Link to={"/card/" + {card}} onClick={() => props.setCardToUpdate(card)}>
+                      <button className='btn btn-primary'>
+                          Update Card
+                      </button>
+                  </Link>
+                  <button className="btn btn-danger" onClick={() => CardApi.deleteCard(card, setRefresh)}>
+                      Delete Card
+                  </button>
+                </p>
+                )}
+              ________________________________________________________________
+            </h4>
+            )}
         </div>
     );
 }
