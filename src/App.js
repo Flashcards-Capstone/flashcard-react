@@ -12,7 +12,11 @@ import Login from './components/LogIn';
 
 function App() {
   const[cardToUpdate, setCardToUpdate] = useState()
-  const[user, setUser] = useState("user")
+  const[user, setUser] = useState("")
+
+  // const getUser = (user) => {
+  //   setUser(user)
+  // }
 
   return (
     <div className="App">
@@ -22,7 +26,7 @@ function App() {
         <Route path="/" element={ <Home/> } exact />
         <Route path="/login" element={ <LogIn setUser={setUser}/>} exact />
         if(user) {
-          <Route path={"/user/" + user.id} element={ <UserHome/> } exact />
+          <Route path="/user" element={ <UserHome user={user}/>} exact />
         }
         <Route path="/user/1" element={<TempPage/>} exact />
         {/* <Route path={"/card/" + cardToUpdate.id} element={<CardEdit cardToUpdate={cardToUpdate}/>} exact /> */}
