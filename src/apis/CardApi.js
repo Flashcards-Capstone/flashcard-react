@@ -48,3 +48,5 @@ const CardApi = {
             .catch( (error) => { console.log(error) } )
     }
 }
+
+export default CardApi;
