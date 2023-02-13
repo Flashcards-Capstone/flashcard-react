@@ -1,7 +1,8 @@
+import { useState } from "react"
+
 const URI = "http://localhost:8080/api/user"
 
 const UserApi = {
-
     authenticateUser: (userCredentials) => {
         fetch( "http://localhost:8080/authenticate", {
             method: "POST", 
@@ -19,13 +20,6 @@ const UserApi = {
 
                 return result.json()
             } )
-            // .then( (data) => {
-
-            //     console.log("DATA:")
-            //     console.log(data)
-
-            // } )
-            // .then( window.location.replace('http://localhost:8080/api/user/' + data['id']) )
             .catch( (error) => { console.log(error) } ) 
     },
 
@@ -45,5 +39,25 @@ const UserApi = {
 
             } )
             .catch( (error) => { console.log(error) } );
+    },
+
+    getUserByUsernameAndPassword: (userCredentials) => {
+        let username = userCredentials.username
+        let password = userCredentials.password
+
+        fetch("http://localhost:8080/api/login", {
+            method: "POST", 
+            headers: { "Content-Type": "application/json" }, 
+            body: JSON.stringify(userCredentials)
+        } )
+            .then( (result) => {     
+
+                console.log("RESULT")
+                console.log(result)
+
+                return result.json()
+            } )
     }
 }
+
+export default UserApi;

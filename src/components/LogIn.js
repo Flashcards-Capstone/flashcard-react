@@ -1,10 +1,11 @@
 import { useState } from "react";
 import React from "react";
-import { UserApi } from "../apis/UserApi";
+import UserApi from "../apis/UserApi";
 
 const LogIn = () => {
     const[ username, setUsername ] = useState("")
     const[ password, setPassword ] = useState("")
+    const[ user, setUser ] = useState("")
 
     const handleSubmit = (event) => {
         const userCredentials = {
@@ -12,7 +13,10 @@ const LogIn = () => {
             'password': password
         }
 
-        UserApi.authenticateUser(userCredentials)
+        setUser(UserApi.getUserByUsernameAndPassword(userCredentials))
+
+        window.location.replace('http://localhost:8080/api/user/' + user.id)
+        // UserApi.authenticateUser(userCredentials)
     }
     
     return (

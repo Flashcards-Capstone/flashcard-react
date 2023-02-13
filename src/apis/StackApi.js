@@ -136,3 +136,5 @@ const StackApi = {
             .catch( (error) => { console.log(error) } )
     }
 }
+
+export default StackApi;
