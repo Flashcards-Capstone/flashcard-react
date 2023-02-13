@@ -5,10 +5,8 @@ const CardEdit = (props) => {
     const card = props.cardToUpdate
 
     const[ id, setId ] = useState(card ? card.id : 0)
-    const[ question, setQuestion ] = useState(card ? card.id : "")
-    const[ answer, setAnswer ] = useState(card ? card.id : "")
-
-    console.log(test)
+    const[ question, setQuestion ] = useState(card ? card.question : "")
+    const[ answer, setAnswer ] = useState(card ? card.answer : "")
 
     useEffect(() =>{
         if (card) {

@@ -11,6 +11,7 @@ import ShowStack from './components/ShowStack';
 
 function App() {
   const[cardToUpdate, setCardToUpdate] = useState()
+  const[user, setUser] = useState()
 
   return (
     <div className="App">
@@ -21,7 +22,7 @@ function App() {
         <Route path="/login" element={ <LogIn/> } exact />
         <Route path="/user" element={ <UserHome/> } exact />
         <Route path="/user/1" element={<TempPage/>} exact />
-        <Route path={"/card/" + cardToUpdate.id} element={<CardEdit cardToUpdate={cardToUpdate}/>} exact />
+        {/* <Route path={"/card/" + cardToUpdate.id} element={<CardEdit cardToUpdate={cardToUpdate}/>} exact /> */}
         <Route path="/stack" element={<ShowStack/>} exact />
       </Routes>
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import UserApi from "../apis/UserApi";
+import { UserApi } from "../apis/UserApi";
 
 const LogIn = () => {
     const[ username, setUsername ] = useState("")
@@ -23,7 +23,7 @@ const LogIn = () => {
                     <div className="login-box-content">
                         <h3 className="login-box-title">Sign In</h3>
                         <div className="form-group mt-3">
-                            <label>Email address</label>
+                            <label>Username</label>
                             <input
                                 type="username"
                                 className="form-control mt-1"
