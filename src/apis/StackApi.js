@@ -62,7 +62,7 @@ const StackApi = {
             .catch( (error) => { console.log(error) } ) 
     },
 
-    getStackById: (stackId) => {
+    getStackById: (stackId, setStack) => {
 
         fetch( URI + '/' + stackId )
             .then( (result) => {
@@ -77,14 +77,14 @@ const StackApi = {
                 console.log("DATA:")
                 console.log(data)
 
-                setStackList(data)
+                setStack(data)
 
             } )
             .catch( (error) => { console.log(error) } );
         
     },
 
-    getStacksBysubject: (subject) => {
+    getStacksBysubject: (subject, setStackList) => {
 
         fetch( URI + '/' + subject )
             .then( (result) => {
