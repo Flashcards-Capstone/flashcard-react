@@ -4,18 +4,20 @@ import { Link } from "react-router-dom";
 import CardApi from "../apis/CardApi";
 
 const UserHome = (props) => {
-    const [stackList, setStackList] = useState([])
+    const user = props
+    const stacks = user.stacks
+    // const [stackList, setStackList] = useState([])
     const [refresh, setRefresh] = useState(false)
 
     useEffect( () => {
-        StackApi.getAllStacks(setStackList)
 
     }, [refresh] )
 
     return (
         <div>
-            <h1>List of your Stacks:</h1>
-            {stackList.map( stack => 
+            <h1>Welcome {user.username} </h1>
+            <h2>List of your Stacks:</h2>
+            {stacks.map( stack => 
             <h4 key={stack.id}>
               {stack.subject}: {stack.title}
               <br/>

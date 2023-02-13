@@ -3,20 +3,26 @@ import React from "react";
 import UserApi from "../apis/UserApi";
 
 const LogIn = () => {
+    
     const[ username, setUsername ] = useState("")
     const[ password, setPassword ] = useState("")
     const[ user, setUser ] = useState("")
 
     const handleSubmit = (event) => {
+        event.preventDefault()
         const userCredentials = {
             'username': username,
             'password': password
         }
+        let token = undefined
 
-        setUser(UserApi.getUserByUsernameAndPassword(userCredentials))
+        token = UserApi.authenticateUser(userCredentials)
+        const testUser = UserApi.getUserByUsername(userCredentials.username)
+        console.log(testUser)
+        setUser(testUser)
+        
+        // window.location.replace('http://localhost:8080/api/user/' + user.username)
 
-        window.location.replace('http://localhost:8080/api/user/' + user.id)
-        // UserApi.authenticateUser(userCredentials)
     }
     
     return (

@@ -6,19 +6,26 @@ const UserApi = {
     authenticateUser: (userCredentials) => {
         fetch( "http://localhost:8080/authenticate", {
             method: "POST", 
-            headers: { "Content-Type": "application/json" }, 
+            headers: { 
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+             }, 
             body: JSON.stringify(userCredentials)
         } )
             .then( (result) => {     
+                console.log("TOKEN RESULT:", result)
 
-                console.log("RESULT")
-                console.log(result)
-
-                if (result !== null) {
-                    window.location.replace('http://localhost:8080/api/user/' + result['id'])
-                }
+                // if (result !== null) {
+                //     window.location.replace('http://localhost:8080/api/user/' + result['id'])
+                // }
 
                 return result.json()
+            } )
+            .then( (data) => {
+
+                console.log("TOKEN DATA:", data)
+                const token = data.jwt
+                console.log("TOKEN:", token)
             } )
             .catch( (error) => { console.log(error) } ) 
     },
@@ -41,21 +48,20 @@ const UserApi = {
             .catch( (error) => { console.log(error) } );
     },
 
-    getUserByUsernameAndPassword: (userCredentials) => {
-        let username = userCredentials.username
-        let password = userCredentials.password
-
-        fetch("http://localhost:8080/api/login", {
-            method: "POST", 
-            headers: { "Content-Type": "application/json" }, 
-            body: JSON.stringify(userCredentials)
-        } )
+    getUserByUsername: (username) => {
+        fetch("http://localhost:8080/api/login/" + username )
             .then( (result) => {     
 
-                console.log("RESULT")
+                console.log("USER RESULT")
                 console.log(result)
 
                 return result.json()
+            } )
+            .then( (data) => {
+
+                console.log("USER DATA:")
+                console.log(data)
+
             } )
     }
 }
