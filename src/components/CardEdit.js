@@ -3,6 +3,10 @@ import CardApi from "../apis/CardApi";
 
 const CardEdit = (props) => {
     const card = props.cardToUpdate
+    const user = props.user
+
+    console.log("USERUSERUSERUSER", user)
+    console.log("ASDGSJDIGOSJD", card)
 
     const[ id, setId ] = useState(card ? card.id : 0)
     const[ question, setQuestion ] = useState(card ? card.question : "")
@@ -23,7 +27,7 @@ const CardEdit = (props) => {
             'answer': answer
         }
 
-        CardApi.updateCard(card)
+        CardApi.updateCard(card, card.id)
     }
     
     return (

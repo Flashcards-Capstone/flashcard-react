@@ -1,4 +1,4 @@
-const URI = "http://localhost:8080/api/card"
+const URI = "http://54.215.44.229:8080/api/card"
 
 const CardApi = {
     createCard: async (cardToCreate, stackId) => {
@@ -33,7 +33,10 @@ const CardApi = {
         
         fetch( URI + '/' + cardId, {
             method: "PATCH",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+             },
             body: JSON.stringify(cardToUpdate)
         } )
             .then( result => result.json() )

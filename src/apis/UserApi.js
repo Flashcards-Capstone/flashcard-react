@@ -3,11 +3,11 @@
 // import { AsyncLocalStorage } from "async_hooks"
 // import { async } from "q"
 
-const URI = "http://localhost:8080/api/user"
+const URI = "http://54.215.44.229:8080/api/user"
 
 const UserApi = {
     authenticateUser: async (userCredentials) => {
-        const auth = await fetch( "http://localhost:8080/authenticate", {
+        const auth = await fetch( "http://54.215.44.229:8080/authenticate", {
             method: "POST", 
             headers: { 
                 "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const UserApi = {
     },
 
     getUserByUsername: async (username) => {
-        const user = await fetch("http://localhost:8080/api/login/" + username , {
+        const user = await fetch("http://54.215.44.229:8080/api/login/" + username , {
             headers: { 
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"

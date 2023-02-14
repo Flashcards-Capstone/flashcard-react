@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 // Make the button disappear if the user is logged in
 
@@ -13,7 +14,7 @@ const Header = () => {
     return (
         <nav class="navbar bg-dark" data-bs-theme="dark">
             <div class="container-fluid">
-                <h1 class="text-light bg-dark">FlashCard</h1>
+                <Link to={"/"} ><h1 class="text-light bg-dark">FlashCard</h1></Link>
                 <span class="navbar-text">
                     <scrpit>
                         <button type="button" class="btn btn-success" onClick={() => changeButtonvisibility()}>Log In</button>

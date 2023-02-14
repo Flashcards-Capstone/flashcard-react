@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import CardApi from "../apis/CardApi";
 import UserApi from "../apis/UserApi";
 
-const UserHome = () => {
+const UserHome = (props) => {
     // const [refresh, setRefresh] = useState(false)
     const [user, setUser] = useState({})
     const [userStacks, setUserStacks] = useState([])
@@ -41,8 +41,8 @@ const UserHome = () => {
             {stack.cards.map(card =>
                 <p key={card.id}>
                 {card.question}|{card.answer}
-                <Link to={"/card/" + {card}} >
-                    <button className='btn btn-primary'>
+                <Link to={"/card/" + card.id} onClick={() => props.setCardToUpdate(card)}>
+                    <button className='btn btn-primary' >
                         Update Card
                     </button>
                 </Link>
