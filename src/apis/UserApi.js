@@ -1,4 +1,4 @@
-import { useState } from "react"
+//import { useState } from "react"
 
 const URI = "http://localhost:8080/api/user"
 
@@ -15,9 +15,7 @@ const UserApi = {
             .then( (result) => {     
                 console.log("TOKEN RESULT:", result)
 
-                // if (result !== null) {
-                //     window.location.replace('http://localhost:8080/api/user/' + result['id'])
-                // }
+
 
                 return result.json()
             } )
@@ -27,6 +25,14 @@ const UserApi = {
                 const token = data.jwt
                 console.log("TOKEN:", token)
             } )
+            .then( () => {
+                UserApi.getUserByUsername(userCredentials.username)
+                // console.log(testUser)
+                // return testUser
+
+            })
+
+            
             .catch( (error) => { console.log(error) } ) 
     },
 
@@ -49,7 +55,12 @@ const UserApi = {
     },
 
     getUserByUsername: (username) => {
-        fetch("http://localhost:8080/api/login/" + username )
+        fetch("http://localhost:8080/api/login/" + username , {
+            headers: { 
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+             }, 
+        })
             .then( (result) => {     
 
                 console.log("USER RESULT")
@@ -61,8 +72,10 @@ const UserApi = {
 
                 console.log("USER DATA:")
                 console.log(data)
-
+                return data;
+                //window.location.replace('http://localhost:3000/user/' + data.id)
             } )
+
     }
 }
 
