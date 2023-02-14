@@ -1,10 +1,13 @@
 //import { useState } from "react"
 
+// import { AsyncLocalStorage } from "async_hooks"
+// import { async } from "q"
+
 const URI = "http://localhost:8080/api/user"
 
 const UserApi = {
-    authenticateUser: (userCredentials) => {
-        fetch( "http://localhost:8080/authenticate", {
+    authenticateUser: async (userCredentials) => {
+        const auth = await fetch( "http://localhost:8080/authenticate", {
             method: "POST", 
             headers: { 
                 "Content-Type": "application/json",
@@ -25,19 +28,19 @@ const UserApi = {
                 const token = data.jwt
                 console.log("TOKEN:", token)
             } )
-            .then( () => {
-                UserApi.getUserByUsername(userCredentials.username)
-                // console.log(testUser)
-                // return testUser
+            // .then( () => {
+            //     UserApi.getUserByUsername(userCredentials.username)
+            //     // console.log(testUser)
+            //     // return testUser
 
-            })
-
-            
+            // })
             .catch( (error) => { console.log(error) } ) 
+
+            return auth
     },
 
-    getUserById: (userId) => {
-        fetch( URI + '/' + userId )
+    getUserById: async (userId) => {
+        const userAgain = await fetch( URI + '/' + userId )
             .then( (result) => {
 
                 console.log("RESULT")
@@ -49,13 +52,15 @@ const UserApi = {
 
                 console.log("DATA:")
                 console.log(data)
-
+                return data
             } )
             .catch( (error) => { console.log(error) } );
+
+            return userAgain
     },
 
-    getUserByUsername: (username) => {
-        fetch("http://localhost:8080/api/login/" + username , {
+    getUserByUsername: async (username) => {
+        const user = await fetch("http://localhost:8080/api/login/" + username , {
             headers: { 
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"
@@ -75,7 +80,8 @@ const UserApi = {
                 return data;
                 //window.location.replace('http://localhost:3000/user/' + data.id)
             } )
-
+            console.log("THIS IS THE REAL USER:", user)
+        return user
     }
 }
 
