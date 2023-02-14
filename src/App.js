@@ -5,7 +5,6 @@ import Home from './components/Home';
 import Header from './components/Header';
 import LogIn from './components/LogIn';
 import UserHome from './components/UserHome';
-import TempPage from './components/TempPage';
 import CardEdit from './components/CardEdit';
 import ShowStack from './components/ShowStack';
 import Login from './components/LogIn';
@@ -35,9 +34,10 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home/> } exact />
         <Route path="/login" element={ <LogIn getUser={getUser}/>} exact />
-        <Route path="/user/:id" element={ <UserHome user={propsUser} getStack={getStack}/>} exact />
+        <Route path="/user/:id" element={ <UserHome user={propsUser} getStack={getStack} setCardToUpdate={setCardToUpdate}/>} exact />
         <Route path="/user/:userId/stack/:stackId/add" element={ <AddCard stack={stackProp} user={propsUser}/> } exact />
         <Route path="/stack/:id" element={<ShowStack stack={stackProp}/>} exact />
+        <Route path="/card/:id" element={<CardEdit cardToUpdate={cardToUpdate} user={propsUser} />} />
       </Routes>
 
     </div>
