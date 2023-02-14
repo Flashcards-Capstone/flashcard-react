@@ -1,21 +1,31 @@
 const URI = "http://localhost:8080/api/card"
 
 const CardApi = {
-    createCard: (cardToCreate) => {
-
+    createCard: async (cardToCreate, stackId) => {
         
-        fetch( URI, {
+        const addedCard = fetch( URI + "/" + stackId, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+             },
             body: JSON.stringify(cardToCreate)
         } )
-            .then( result => result.json() )
-            .then( data => {
-                console.log("CARD CREATED")
-                console.log(data)
+            .then( (result) => {
 
+                console.log("RESULT")
+                console.log(result)
+
+                return result.json()
             } )
-            .catch( (error) => { console.log(error) } ) 
+            .then( (data) => {
+
+                console.log("DATA:")
+                console.log(data)
+                return data
+            } )
+            .catch( (error) => { console.log(error) } )
+        return addedCard
     },
 
     updateCard: (cardToUpdate, cardId) => {
@@ -37,7 +47,11 @@ const CardApi = {
 
     deleteCard: (cardToDelete) => {
         fetch(URI + '/' + cardToDelete, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: { 
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+             }
         })
             .then((response) => {
                 if (!response.ok) {

@@ -1,14 +1,15 @@
 import { useState } from "react";
 import React from "react";
 import UserApi from "../apis/UserApi";
+import { async } from "q";
+import { Link } from "react-router-dom";
 
-const LogIn = () => {
+const LogIn = ({getUser}) => {
     
     const[ username, setUsername ] = useState("")
     const[ password, setPassword ] = useState("")
-    const[ user, setUser ] = useState("")
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         const userCredentials = {
             'username': username,
@@ -17,11 +18,12 @@ const LogIn = () => {
 
         const token = UserApi.authenticateUser(userCredentials)
 
+        const user = await UserApi.getUserByUsername(userCredentials.username)
+
         //const testUser = UserApi.getUserByUsername(userCredentials.username)
-        console.log("AAAAAAAAAAAAAAAAAAA", token)
-       // setUser(testUser)
+        getUser(user)
         
-        // window.location.replace('http://localhost:8080/api/user/' + user.username)
+        window.location.replace('http://localhost:3000/user/' + user.id)
 
     }
     

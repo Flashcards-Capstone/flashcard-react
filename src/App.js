@@ -9,14 +9,24 @@ import TempPage from './components/TempPage';
 import CardEdit from './components/CardEdit';
 import ShowStack from './components/ShowStack';
 import Login from './components/LogIn';
+import AddCard from './components/AddCard';
+import {useParams} from "react-router-dom";
+          
 
 function App() {
   const[cardToUpdate, setCardToUpdate] = useState()
-  const[user, setUser] = useState("")
+  const[propsUser, setUser] = useState("")
+  const[stackProp, setStackProp] = useState("")
 
-  // const getUser = (user) => {
-  //   setUser(user)
-  // }
+  const getUser = (user) => {
+    console.log("USER IN APP.JS: ", user)
+    setUser(user)
+  }
+
+  const getStack = (stack) => {
+    console.log("STACK IN APP.JS: ", stack)
+    setStackProp(stack)
+  }
 
   return (
     <div className="App">
@@ -24,11 +34,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={ <Home/> } exact />
-        <Route path="/login" element={ <LogIn setUser={setUser}/>} exact />
-        <Route path="/user/:id" element={ <UserHome />} exact />
-        {/* <Route path="/user/1" element={<TempPage/>} exact /> */}
-        {/* <Route path={"/card/" + cardToUpdate.id} element={<CardEdit cardToUpdate={cardToUpdate}/>} exact /> */}
-        <Route path="/stack" element={<ShowStack/>} exact />
+        <Route path="/login" element={ <LogIn getUser={getUser}/>} exact />
+        <Route path="/user/:id" element={ <UserHome user={propsUser} getStack={getStack}/>} exact />
+        <Route path="/user/:userId/stack/:stackId/add" element={ <AddCard stack={stackProp} user={propsUser}/> } exact />
+        <Route path="/stack/:id" element={<ShowStack stack={stackProp}/>} exact />
       </Routes>
 
     </div>

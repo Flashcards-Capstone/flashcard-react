@@ -62,9 +62,9 @@ const StackApi = {
             .catch( (error) => { console.log(error) } ) 
     },
 
-    getStackById: (stackId, setStack) => {
+    getStackById: async (stackId) => {
 
-        fetch( URI + '/' + stackId )
+        const stack = await fetch( URI + '/' + stackId )
             .then( (result) => {
 
                 console.log("RESULT")
@@ -77,11 +77,10 @@ const StackApi = {
                 console.log("DATA:")
                 console.log(data)
 
-                setStack(data)
-
+                return data
             } )
             .catch( (error) => { console.log(error) } );
-        
+        return stack
     },
 
     getStacksBysubject: (subject, setStackList) => {
