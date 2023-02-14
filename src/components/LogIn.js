@@ -14,12 +14,12 @@ const LogIn = () => {
             'username': username,
             'password': password
         }
-        let token = undefined
 
-        token = UserApi.authenticateUser(userCredentials)
-        const testUser = UserApi.getUserByUsername(userCredentials.username)
-        console.log(testUser)
-        setUser(testUser)
+        const token = UserApi.authenticateUser(userCredentials)
+
+        //const testUser = UserApi.getUserByUsername(userCredentials.username)
+        console.log("AAAAAAAAAAAAAAAAAAA", token)
+       // setUser(testUser)
         
         // window.location.replace('http://localhost:8080/api/user/' + user.username)
 

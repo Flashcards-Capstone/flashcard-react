@@ -25,10 +25,8 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home/> } exact />
         <Route path="/login" element={ <LogIn setUser={setUser}/>} exact />
-        if(user) {
-          <Route path="/user" element={ <UserHome user={user}/>} exact />
-        }
-        <Route path="/user/1" element={<TempPage/>} exact />
+        <Route path="/user/:id" element={ <UserHome />} exact />
+        {/* <Route path="/user/1" element={<TempPage/>} exact /> */}
         {/* <Route path={"/card/" + cardToUpdate.id} element={<CardEdit cardToUpdate={cardToUpdate}/>} exact /> */}
         <Route path="/stack" element={<ShowStack/>} exact />
       </Routes>
