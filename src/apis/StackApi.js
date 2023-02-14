@@ -1,4 +1,4 @@
-const URI = "http://localhost:8080/api/stack"
+const URI = "http://54.215.44.229:8080/api/stack"
 
 const StackApi = {
     getAllStacks: (setStackList) => {
